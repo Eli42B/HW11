@@ -1,5 +1,5 @@
 # HW11
-HW 11 for Kristine, Nathan, and Elizabeth
+HW 11 for Kristine Schoenecker, Nathan Lin, and Elizabeth Braatz
 
 
 # @ Kristine and Nathan 
@@ -18,3 +18,9 @@ Question: Do the numbers of acres set on fire depend on the size of white and re
    type =  categorical 
 
 You can create your own R files and read in my data (use read.csv("elizabeth_data.csv")) and it should load OK, and then analyze it to answer Uther's question. 
+
+#elizabeth's notes from lecture 
+The lectures nad readings confused me so I tried to make my own notes on the topic, you can see them in Week 11 ANCOVA AND ANOVA.docx word document. Maybe they will help if you are also confused! 
+
+# example_anova_ancova.R 
+I made an example anova and ancova, you can check it out here! 
