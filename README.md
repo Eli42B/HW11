@@ -31,4 +31,7 @@ I uploaded my data example, I hope it is in the right format. (I can definitely 
 Ecological Scenario: Researchers are studying brown bear cubs at two sites. They are interested in if the amount of weight gained after their survey period is related to their average daily forage distance. Do bears that, on average, forage further gain more weight? Is there a difference between male and female bear cubs, or cubs from one site or another?
 
 
-
+# @ Elizabeth and Kristine
+Ecological Scenario: For our newly-discovered tick species Tickus bittus, we are interested in seeing if the different life stages (nymphs and adults) have different vulnerability to desiccation, and how this might affects their questing patterns.
+Our question: How does sensitivity of questing duration to a humidity index differ between tick nymphs and adults?
+Continuous response variable (questing_duration, in minutes), continuous predictor variable (humidity_index, does not exist outside of this exercise), and two-level factor (life_stage).
