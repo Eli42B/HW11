@@ -24,3 +24,11 @@ The lectures nad readings confused me so I tried to make my own notes on the top
 
 # example_anova_ancova.R 
 I made an example anova and ancova, you can check it out here! 
+
+# @ Elizabeth and Nathan
+I uploaded my data example, I hope it is in the right format. (I can definitely adjust this if my example does not make sense, so let me know!)
+
+Ecological Scenario: Researchers are studying brown bear cubs at two sites. They are interested in if the amount of weight gained after their survey period is related to their average daily forage distance. Do bears that, on average, forage further gain more weight? Is there a difference between male and female bear cubs, or cubs from one site or another?
+
+
+
