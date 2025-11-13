@@ -73,4 +73,21 @@ write.csv(dragons, "elizabeth_data.csv", row.names = FALSE)
 # acres set on fire ~ age + size + color  
 
 
+###########################################
+# Exercise  2 
+###########################################
+
+#I used Kristine's data. Here's her question for me: 
+##Average weight gain in bear cubs at two sites after 6 months
+#disclaimer: I know nothing about bear cubs
+#Did cubs at one site gain significantly more weight on average than at another site?
+
+# Researchers are interested in the growth of bear cubs at two national park sites.
+# They weighed 50 bear cubs at each site, and then six months later, reweighed those cubs.
+# They want to know if the bear cubs are significantly heavier at one site or another.
+
+
+
+
+
 
