@@ -73,21 +73,92 @@ write.csv(dragons, "elizabeth_data.csv", row.names = FALSE)
 # acres set on fire ~ age + size + color  
 
 
-###########################################
-# Exercise  2 
-###########################################
+########################################
+# Part II 
+########################################
 
-#I used Kristine's data. Here's her question for me: 
-##Average weight gain in bear cubs at two sites after 6 months
-#disclaimer: I know nothing about bear cubs
-#Did cubs at one site gain significantly more weight on average than at another site?
+# I used Nathan's tick data 
 
-# Researchers are interested in the growth of bear cubs at two national park sites.
-# They weighed 50 bear cubs at each site, and then six months later, reweighed those cubs.
-# They want to know if the bear cubs are significantly heavier at one site or another.
+# Instructions: 
+# Ecological Scenario: For our newly-discovered tick species Tickus bittus, we are interested in seeing if the different life stages (nymphs and adults) have different vulnerability to desiccation, and how this might affects their questing patterns.
 
+#Our question: How does sensitivity of questing duration to a humidity index differ between tick nymphs and adults?
 
+#Continuous response variable (questing_duration, in minutes), continuous predictor variable (humidity_index, does not exist outside of this exercise), and two-level factor (life_stage).
 
+#loading libraries 
+library(tidyverse)   #data manipulation, dplyr 
+library(ggpubr)      #creating easily publication ready plots
+library(rstatix)     # pipe friendly stat analyses
+library(broom)       #printing summary of stat tests as data frames
+library(datarium)   #contains example datasets from this
+library(dplyr)       #so we can pipe 
+library(emmeans)     # so we can do a post-hoc test like Tukey for ANCOVA
 
+#loading data 
+ticks = read.csv("tick_data.csv")
 
+#Initial data visualization 
 
+#y = mx + b 
+#questing_duration ~ humidity*life_stage + b + e 
+
+#Base plot 
+base_plot = ggplot(ticks, aes(x = humidity_index, y = questing_duration)) + 
+  geom_point(aes(color = life_stage))
+base_plot + 
+  labs(title = "Ticks by Lifestage", 
+       x = "Humidity Index",
+       y = "Questing Duration") 
+# we want to post the base plot + a title, but we don't want to save the title to the baseplot because we will be changing this quite a lot 
+
+base_plot + 
+  facet_wrap(~life_stage, nrow = 1)  #visualizing the baseplot but facet wrapped 
+
+# A ---------------------- 
+# Fit a model 
+
+aov_model = aov(questing_duration~life_stage*humidity_index, data = ticks)
+summary(aov_model)
+
+#life stage is not interacting, so we can include it as an independent covariate
+
+fit = aov(questing_duration~life_stage + humidity_index, data = ticks)
+
+# Run the ANCOVA and keep checking assumptions 
+
+#Assumptions of both ANCOVA and ANOVA 
+# Homogeneity of residuals variance (homoscedasticity) 
+# Normally distributed  outcome variable 
+# No sign. outliers 
+
+resid = ticks$questing_duration - predict.lm(fit)
+plot(resid ~ predict.lm(fit), ylab = "residuals", xlab = "Predicted Y")
+abline(a = 0, b = 0, col = "red")
+#residuals are the difference between the actual and predicted fit 
+#Testing homogeneity of residuals 
+#this is looking good 
+
+stdRes = rstandard(fit)
+qqnorm(stdRes,ylab="Standardized Residuals", xlab="Theoretical Quantiles")
+qqline(stdRes, col=2,lwd=2)
+hist(stdRes)
+#Testing normality 
+#   QQline is great
+#   Histogram is great
+
+#What does our fit say? 
+summary(fit)
+# questing duration is significantly related to the humidity index, but life stage does not impact questing duration 
+
+#Posthoc test 
+emmeans(fit, pairwise ~ life_stage, adjust = "tukey")$contrasts 
+#tukey base R will not work here becuase its ancova 
+#We need to use emmeans to compare pairwise means 
+#basically like tukey but for ancova 
+# no significance of life stage 
+
+# B --------------------------------
+
+#Our question: How does sensitivity of questing duration to a humidity index differ between tick nymphs and adults?
+#As humidity increases, ticks start questing for longer periods of time. However, their life stage does not impact  how long they quest. 
