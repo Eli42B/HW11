@@ -9,12 +9,12 @@ King Uther Pendragon is having some trouble with dragons in his medieval kingdom
 
 Question: Do the numbers of acres set on fire depend on the size of white and red dragons? 
  Continuous response variable: Number of acres set on fire 
-  # type = numeric
-  # unit = acre 
+   type = numeric
+   unit = acre 
  Continuous predictor variable: Dragon size 
-  # type = numeric 
-  # unit = tons 
+   type = numeric 
+   unit = tons 
  Two level factor: Color of dragon 
-  # type =  categorical 
+   type =  categorical 
 
 You can create your own R files and read in my data (use read.csv("elizabeth_data.csv")) and it should load OK, and then analyze it to answer Uther's question. 
